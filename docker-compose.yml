@@ -19,11 +19,13 @@ services:
       # REACT_APP_BACKEND_URL: "https://4567--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev/"
       # Local
       REACT_APP_BACKEND_URL: "http://localhost:4567"
+      CHOKIDAR_USEPOLLING: "true"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
     volumes:
       - ./frontend-react-js:/frontend-react-js
+      - /frontend-react-js/node_modules
 
 # the name flag is a hack to change the default prepend folder
 # name when outputting the image names
