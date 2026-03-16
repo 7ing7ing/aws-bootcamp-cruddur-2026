@@ -4,6 +4,9 @@ services:
       # Ona
       # FRONTEND_URL: "https://3000--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev" # example
       # BACKEND_URL: "https://4567--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev" # example
+      # Codespaces
+      # FRONTEND_URL: "https://${CODESPACE_NAME}-3000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+      # BACKEND_URL: "https://${CODESPACE_NAME}-4567.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
       # Local
       FRONTEND_URL: "http://localhost:3000"
       BACKEND_URL: "http://localhost:4567"
@@ -12,6 +15,8 @@ services:
       OTEL_SERVICE_NAME: "backend-flask"
       # Ona
       # AWS_XRAY_URL: "*4567--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev*" # example
+      # Codespaces
+      # AWS_XRAY_URL: "*https://${CODESPACE_NAME}-4567.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}*"
       # Local
       AWS_XRAY_URL: "*http://localhost:4567*"
       AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
@@ -28,6 +33,8 @@ services:
     environment:
       # Ona
       # REACT_APP_BACKEND_URL: "https://4567--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev/" # example
+      # Codespaces
+      # REACT_APP_BACKEND_URL: "https://${CODESPACE_NAME}-4567.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
       # Local
       REACT_APP_BACKEND_URL: "http://localhost:4567"
       CHOKIDAR_USEPOLLING: "true"

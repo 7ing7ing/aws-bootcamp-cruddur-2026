@@ -3,7 +3,7 @@
 //
 // See https://aka.ms/devcontainer.json for more information.
 {
-	"name": "Ona",
+	"name": "Cruddr configuration",
 	"image": "mcr.microsoft.com/devcontainers/universal:latest",
 	
 	"forwardPorts": [3000, 4567, 2000],
@@ -11,7 +11,7 @@
 	"portsAttributes": {
 		"3000": {
 			"label": "frontend",
-			"onAutoForward": "openBrowser"
+			// "onAutoForward": "openBrowser"
 		},
 		"4567": {
 			"label": "backend"
@@ -24,7 +24,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"42Crunch.vscode-openapi"
+				"42Crunch.vscode-openapi",
+				"dracula-theme.theme-dracula",
+				"WakaTime.vscode-wakatime"
 			]
 		}
 	},
@@ -33,6 +35,10 @@
 	"features": {
       "ghcr.io/devcontainers/features/docker-in-docker": {
         "moby": false
-      }
-    }
+      },
+	  "ghcr.io/devcontainers/features/aws-cli:1": {}
+    },
+	"remoteEnv": {
+		"AWS_CLI_AUTO_PROMPT":"on-partial"
+	}
 }
