@@ -15,4 +15,6 @@ tasks:
     command: |
       cd frontend-react-js
       npm i
+    triggeredBy:
+      - postEnvironmentStart
 
