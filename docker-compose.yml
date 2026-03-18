@@ -37,6 +37,10 @@ services:
       # REACT_APP_BACKEND_URL: "https://${CODESPACE_NAME}-4567.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
       # Local
       REACT_APP_BACKEND_URL: "http://localhost:4567"
+      REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_USER_POOLS_ID: "eu-west-2_kO5ZUmc9c"
+      REACT_APP_CLIENT_ID: "263nuf3bi8r02hjqe97u580b7b"
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     build: ./frontend-react-js
