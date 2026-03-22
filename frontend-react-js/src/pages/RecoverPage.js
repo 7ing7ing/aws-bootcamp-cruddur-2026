@@ -2,6 +2,7 @@ import './RecoverPage.css';
 import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
+import { resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 
 export default function RecoverPage() {
   // Username is Eamil
@@ -14,14 +15,24 @@ export default function RecoverPage() {
 
   const onsubmit_send_code = async (event) => {
     event.preventDefault();
-    console.log('onsubmit_send_code')
-    return false
-  }
+    setErrors('');
+    resetPassword({ username })
+      .then((data) => setFormState('confirm_code'))
+      .catch((err) => setErrors(err.message));
+    return false;
+  };
   const onsubmit_confirm_code = async (event) => {
     event.preventDefault();
-    console.log('onsubmit_confirm_code')
-    return false
-  }
+    setErrors('');
+    if (password == passwordAgain) {
+      confirmResetPassword({ username, confirmationCode: code, newPassword: password })
+        .then((data) => setFormState('success'))
+        .catch((err) => setErrors(err.message));
+    } else {
+      setErrors('Passwords do not match');
+    }
+    return false;
+  };
 
   const username_onchange = (event) => {
     setUsername(event.target.value);
@@ -115,13 +126,13 @@ export default function RecoverPage() {
     }
 
   let form;
-  if (formState == 'send_code') {
+  if (formState === 'send_code') {
     form = send_code()
   }
-  else if (formState == 'confirm_code') {
+  else if (formState === 'confirm_code') {
     form = confirm_code()
   }
-  else if (formState == 'success') {
+  else if (formState === 'success') {
     form = success()
   }
 

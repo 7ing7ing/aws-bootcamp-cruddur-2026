@@ -24,6 +24,8 @@ services:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
+      AWS_COGNITO_USER_POOL_ID: "eu-west-2_sM02g4KQF"
+      AWS_COGNITO_USER_POOL_CLIENT_ID: "39rj22eal609jrl4p1odpcok8k"
     build: ./backend-flask
     ports:
       - "4567:4567"
@@ -39,8 +41,8 @@ services:
       REACT_APP_BACKEND_URL: "http://localhost:4567"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "eu-west-2_kO5ZUmc9c"
-      REACT_APP_CLIENT_ID: "263nuf3bi8r02hjqe97u580b7b"
+      REACT_APP_AWS_USER_POOLS_ID: "eu-west-2_sM02g4KQF"
+      REACT_APP_CLIENT_ID: "39rj22eal609jrl4p1odpcok8k"
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     build: ./frontend-react-js

@@ -4,7 +4,7 @@ import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
 
 // [TODO] Authenication
-import Cookies from 'js-cookie'
+import { signIn, fetchAuthSession } from 'aws-amplify/auth';
 
 export default function SigninPage() {
 
@@ -12,18 +12,30 @@ export default function SigninPage() {
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
 
-  const onsubmit = async (event) => {
-    event.preventDefault();
-    setErrors('')
-    console.log('onsubmit')
-    if (Cookies.get('user.email') === email && Cookies.get('user.password') === password){
-      Cookies.set('user.logged_in', true)
-      window.location.href = "/"
-    } else {
-      setErrors("Email and password is incorrect or account doesn't exist")
+const onsubmit = async (event) => {
+  event.preventDefault();
+  setErrors('');
+
+  try {
+    const { isSignedIn, nextStep } = await signIn({ username: email, password });
+
+    if (isSignedIn) {
+      const session = await fetchAuthSession();
+      console.log(session)
+      const accessToken = session.tokens?.accessToken?.toString();
+      localStorage.setItem("access_token", accessToken);
+      window.location.href = "/";
     }
-    return false
+    
+    if (nextStep.signInStep === 'CONFIRM_SIGN_UP') {
+      window.location.href = "/confirm";
+    }
+  } catch (error) {
+    setErrors(error.message);
   }
+
+  return false;
+};
 
   const email_onchange = (event) => {
     setEmail(event.target.value);
