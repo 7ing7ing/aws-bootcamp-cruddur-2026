@@ -1,6 +1,7 @@
 services:
   backend-flask:
     environment:
+      CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
       # Ona
       # FRONTEND_URL: "https://3000--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev" # example
       # BACKEND_URL: "https://4567--019cb315-0c56-751a-9a8d-541b1d1d7a39.eu-central-1-01.gitpod.dev" # example
